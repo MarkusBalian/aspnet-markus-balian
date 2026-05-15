@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Core Fitness Club</title>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav>
+            <a asp-controller="Home" asp-action="Index">Home</a> |
+            <a asp-controller="Classes" asp-action="Index">Classes</a> |
+            <a asp-controller="Membership" asp-action="Index">Membership</a> |
+            <a asp-controller="MyPage" asp-action="Index">My Page</a> |
+
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <form asp-controller="Account" asp-action="Logout" method="post" style="display:inline;">
+                    <button type="submit">Log out</button>
+                </form>
+            }
+            else
+            {
+                <a asp-controller="Account" asp-action="Register">Register</a>
+                <span>|</span>
+                <a asp-controller="Account" asp-action="Login">Log in</a>
+            }
+        </nav>
+    </header>
+    <div class="container">
+        @RenderBody()
+    </div>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

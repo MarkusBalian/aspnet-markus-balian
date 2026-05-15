@@ -1,0 +1,9 @@
+﻿@model Webapp.Models.Account.LoginViewModel
+<h2>Log in</h2>
+<form asp-action="Login" method="post">
+    <div asp-validation-summary="ModelOnly"></div>
+    <label asp-for="Email"></label><input asp-for="Email" />
+    <label asp-for="Password"></label><input asp-for="Password" />
+    <label asp-for="RememberMe"></label><input asp-for="RememberMe" />
+    <button type="submit">Log in</button>
+</form>

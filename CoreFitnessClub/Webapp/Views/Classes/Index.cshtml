@@ -1,0 +1,23 @@
+﻿@model IReadOnlyCollection<CoreFitnessClub.Domain.Entities.GymClass>
+<h2>Available Classes</h2>
+@if (TempData["Message"] is string message)
+{
+    <p>@message</p>
+}
+<table>
+    @foreach (var c in Model)
+    {
+        <tr>
+            <td>@c.Name</td>
+            <td>@c.Category</td>
+            <td>@c.Instructor</td>
+            <td>@c.StartTimeUtc.ToLocalTime()</td>
+            <td>
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <form asp-action="Book" method="post"><input type="hidden" name="id" value="@c.Id" /><button type="submit">Book</button></form>
+                }
+            </td>
+        </tr>
+    }
+</table>

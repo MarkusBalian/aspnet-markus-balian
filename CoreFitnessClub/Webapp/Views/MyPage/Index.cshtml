@@ -1,0 +1,23 @@
+﻿@model Webapp.Models.MyPage.MyPageViewModel
+<h2>My Page</h2>
+<h3>Membership</h3>
+@if (Model.Membership is null)
+{
+    <p>No active membership.</p>
+}
+else
+{
+
+    <p>@Model.Membership.PlanName (@Model.Membership.Status)</p>
+}
+<h3>My Bookings</h3>
+@foreach (var booking in Model.Bookings)
+{
+    <div>
+        <strong>@booking.GymClass?.Name</strong> - @booking.GymClass?.StartTimeUtc.ToLocalTime()
+        <form asp-controller="Classes" asp-action="Cancel" method="post">
+            <input type="hidden" name="id" value="@booking.Id" />
+            <button type="submit">Cancel</button>
+        </form>
+    </div>
+}

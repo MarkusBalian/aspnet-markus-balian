@@ -1,0 +1,15 @@
+﻿@model Webapp.Models.MembershipModels.MembershipViewModel
+<h2>Membership</h2>
+<p>Current status: @ViewData["CurrentStatus"]</p>
+
+<form asp-action="Save" method="post">
+    <label asp-for="PlanName">Choose membership</label>
+    <select asp-for="PlanName">
+        @foreach (var plan in Model.AvailablePlans)
+        {
+            <option value="@plan">@plan</option>
+        }
+    </select>
+    <span asp-validation-for="PlanName"></span>
+    <button type="submit">Save membership</button>
+</form>
